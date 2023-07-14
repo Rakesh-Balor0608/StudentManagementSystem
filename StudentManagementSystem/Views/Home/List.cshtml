@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.7.1/js/jquery.jqGrid.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.7.1/css/ui.jqgrid.min.css" />
+
+
+<table id="myTable" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+      @*  @foreach (var person in Model.People)
+        {
+            <tr>
+                <td>@person.Name</td>
+                <td>@person.Age</td>
+                <td>@person.Email</td>
+            </tr>
+        }*@
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}
+
+
+<script>
+    $(function () {
+        $("#myGrid").jqGrid({
+            url: '@Url.Action("GetGridData", "MyController")',
+            datatype: 'json',
+            colNames: ['Column 1', 'Column 2', 'Column 3'],
+            colModel: [
+                { name: 'col1', index: 'col1', width: 150 },
+                { name: 'col2', index: 'col2', width: 150 },
+                { name: 'col3', index: 'col3', width: 150 }
+            ],
+            rowNum: 10,
+            rowList: [10, 20, 30],
+            pager: '#myPager',
+            sortname: 'col1',
+            viewrecords: true,
+            sortorder: 'asc',
+            caption: 'My Grid'
+        });
+    });
+</script>

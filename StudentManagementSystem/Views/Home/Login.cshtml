@@ -1,0 +1,84 @@
+﻿@model StudentManagementSystem.Models.LoginMaster;
+
+@{
+    Layout = null;
+}
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-v4-rtl-master/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="~/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/iransans.css" rel="stylesheet" />
+    <link href="~/css/Style.css" rel="stylesheet" />
+    <style>
+        .my-nav-li:hover {
+            background-color: rgb(50, 149, 155);
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<div class="text-center">
+    <h1 class="display-4">Select The type of login </h1>
+</div>
+<div>
+    <button class="btn btn-primary w-100 mb-3" id="student">Student</button>
+    <button class="btn btn-primary w-100 mb-3" id="teacher">Teacher</button>
+</div>
+<div>
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { id = "LoginPage" }))
+{
+    @Html.HiddenFor(model=>model.Type)
+    <div class="container" id="StudentTile" style="display:none">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card p-3">
+                    <h2 class="text-center">Student Login</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Student Id</label>
+                                @Html.TextBoxFor(model=>model.StudentLoginId,new{@class = "form-control form-control-sm",@placeholder = "Enter your student Id"})
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                                @Html.PasswordFor(model=>model.StudentPassword,new{@class = "form-control form-control-sm",@placeholder = "Password"})
+                        </div>
+                        <br />
+                        <div class="d-flex justify-content-center">
+                                <button type="button" id="studentLogin" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="container" id="TeacherTile" style="display:none">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card p-3">
+                    <h2 class="text-center">Teacher Login</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="username">Teacher Id</label>
+                                @Html.TextBoxFor(model=>model.TeacherLoginId,new{@class = "form-control form-control-sm",@placeholder = "Enter your teacher Id"})
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                                @Html.PasswordFor(model=>model.TeacherPassword,new{@class = "form-control form-control-sm",@placeholder = "Password"})
+                        </div>
+                        <br />
+                        <div class="d-flex justify-content-center">
+                                <button type="button" id="teacherLogin" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>
+<script src="~/javascripts/login.js"></script>
